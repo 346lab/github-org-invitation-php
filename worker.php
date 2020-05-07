@@ -9,16 +9,13 @@ function github_api($token,$ACTION,$endpoint,$data){
     curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 
     switch ($ACTION) {
+        case "POST":
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
         case "GET":
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-            break;
-        
-        case "POST":
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
             break;
 
         case "HEAD":
